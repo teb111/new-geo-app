@@ -1,0 +1,107 @@
+.register {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 1000px;
+    height: auto; 
+    border-radius: 10px;
+    display: flex;
+    background-color: #f5f5f5;
+    box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%),
+                0px 3px 4px 0px rgb(0 0 0 / 14%),
+                0px 1px 8px 0px rgb(0 0 0 / 12%);
+}
+
+.Left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(4, 85, 165);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin: 10px 40px;
+    align-self: center;
+    text-align: center;
+    color: white;
+}
+
+.Right {
+    flex: 2;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-self: center;
+    flex-direction: column;
+    padding: 20px 40px; 
+}
+
+.user-details, .business-details {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    margin: 20px 0;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.form_users {
+    margin-bottom: 20px;
+}
+
+.form_users input, .form_users textarea {
+    width: 100%;
+    display: flex;
+}
+
+label {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 5px; 
+    display: block; 
+}
+
+input, textarea {
+    outline: none;
+    border: none;
+    padding: 10px;
+    height: 35px; 
+    margin: 5px 0;
+    border-radius: 5px;
+    background-color: #d8e0ed;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+textarea {
+    height: auto; 
+}
+
+.btn {
+    position: relative;
+    border: none;
+    outline: none;
+    color: #fff;
+    background-color: rgb(4, 85, 165);
+    border-radius: 20px;
+    height: 45px;
+    width: 100px;
+    margin: 20px auto; 
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    display: block; 
+}
