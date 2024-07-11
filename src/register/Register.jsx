@@ -1,51 +1,55 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Register.css";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { registerUser } from "../actions/authActions";
+import Loader from "../components/Loader";
 
 const Register = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [data, setData] = useState({
     firstname: "",
     lastname: "",
-    phoneNumber: "",
+    phone: "",
     email: "",
     password: "",
     businessName: "",
-    businessNumber: "",
     businessAddress: "",
-    regNumber: "",
-    tags: [],
+    businessPhone: "",
+    registrationNumber: "",
+    tags: "",
   });
+
+  const register = useSelector((state) => state.register);
+  const { loading, success, error, business } = register;
 
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value });
   };
 
-  const [tags, setTags] = useState("");
-  const [tagList, setTagList] = useState([]);
-
-  const handleInputChange = (event) => {
-    setTags(event.target.value);
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
-    const newTagList = tags
-      .trim()
-      .split(",")
-      .map((tag) => tag.trim());
-    setTagList(newTagList);
-    setTags("");
-
-    const formData = { ...data, tags: newTagList };
+    const formData = { ...data };
     setData(formData);
+    console.log(formData);
+    dispatch(registerUser(formData));
   };
+
+  useEffect(() => {
+    if (success) {
+      navigate("/business-dashboard", { replace: true });
+    }
+  }, [success, navigate]);
 
   return (
     <div className="register">
       <div className="container">
         <div className="Left">
-          <h1 className="title">Register Here</h1>
+          <h1>Register Your business</h1>
         </div>
         <div className="Right">
+          <p style={{ color: "red" }}>{error?.message}</p>
           <form
             action="submit"
             onSubmit={handleSubmit}
@@ -53,7 +57,6 @@ const Register = () => {
           >
             <div className="user-details">
               <div className="form_users">
-                <label>Firstname</label>
                 <input
                   type="text"
                   placeholder="First name"
@@ -64,7 +67,6 @@ const Register = () => {
                 />
               </div>
               <div className="form_users">
-                <label>Lastname</label>
                 <input
                   type="text"
                   placeholder="Lastname"
@@ -75,19 +77,16 @@ const Register = () => {
                 />
               </div>
               <div className="form_users">
-                <label>Phone Number</label>
                 <input
                   type="text"
                   placeholder="Phone number"
-                  name="phoneNumber"
+                  name="phone"
                   onChange={handleChange}
                   value={data.phoneNumber}
-                  maxLength={11}
                   required
                 />
               </div>
               <div className="form_users">
-                <label>Email</label>
                 <input
                   type="email"
                   placeholder="Email"
@@ -98,7 +97,6 @@ const Register = () => {
                 />
               </div>
               <div className="form_users">
-                <label>Password</label>
                 <input
                   type="password"
                   placeholder="Password"
@@ -112,7 +110,6 @@ const Register = () => {
 
             <div className="business-details">
               <div className="form_users">
-                <label>Business Name</label>
                 <input
                   type="text"
                   placeholder="Business name"
@@ -122,8 +119,7 @@ const Register = () => {
                   required
                 />
               </div>
-              <div className="form_users">
-                <label>Business Number</label>
+              {/* <div className="form_users">
                 <input
                   type="tel"
                   placeholder="Business number"
@@ -133,9 +129,8 @@ const Register = () => {
                   maxLength={11}
                   required
                 />
-              </div>
+              </div> */}
               <div className="form_users">
-                <label>Business Address</label>
                 <input
                   type="text"
                   placeholder="Business address"
@@ -146,35 +141,65 @@ const Register = () => {
                 />
               </div>
               <div className="form_users">
-                <label>Registration Number</label>
                 <input
                   type="text"
                   placeholder="Registration Number"
-                  name="regNumber"
+                  name="registrationNumber"
+                  onChange={handleChange}
+                  value={data.regNumber}
+                  required
+                />
+              </div>
+              <div className="form_users">
+                <input
+                  type="text"
+                  placeholder="Business Phone Number"
+                  name="businessPhone"
                   onChange={handleChange}
                   value={data.regNumber}
                   required
                 />
               </div>
               <div className="form_users tags">
-                <label>Tags</label>
                 <input
                   type="text"
-                  value={tags}
-                  onChange={handleInputChange}
+                  value={data.tags}
+                  name="tags"
+                  onChange={handleChange}
                   placeholder="Enter tags (e.g., shops, schools)"
                 />
-                <ul>
+                {/* <ul>
                   {tagList.map((tag, index) => (
                     <li key={index}>{tag}</li>
                   ))}
-                </ul>
+                </ul> */}
               </div>
             </div>
-            <button type="submit" className="btn">
-              Sign Up
-            </button>
+            {loading ? (
+              <Loader />
+            ) : (
+              <button type="submit" className="btn">
+                Sign Up
+              </button>
+            )}
           </form>
+
+          <p>
+            {" "}
+            <Link
+              to="/login"
+              style={{
+                display: "block",
+                margin: 0,
+                padding: 0,
+                textAlign: "center",
+                color: "#000",
+                textDecoration: "none",
+              }}
+            >
+              Already have an account? Login{" "}
+            </Link>
+          </p>
         </div>
       </div>
     </div>
