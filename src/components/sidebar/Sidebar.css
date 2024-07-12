@@ -1,0 +1,51 @@
+.sidebar {
+    flex: 1;
+    background-color: whitesmoke;
+    min-height: 100vh;
+    border-right: 0.5px solid lightgray;
+    font-weight: bolder;
+    font-family: monospace;
+}
+.top {
+    display: flex;
+    height: 50px;
+    padding-left: 20px;
+    align-items: center;
+    justify-content: center;
+}
+.logo{
+    font-size: 30px;
+    font-weight: bold;
+    font-family: cursive;
+    color: rgb(4, 85, 165);
+}
+.bottom {
+    padding: 20px;
+}
+ul {
+    list-style: none;
+    padding-bottom: 20px;
+    margin: 0;
+}
+li {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: rgb(4, 85, 165);
+    padding: 15px;
+    margin-bottom: 15px;
+}
+li:hover {
+    border-radius: 10px;
+    background-color: #3c4deb;
+    color: #fff;
+}
+.icon {
+    font-size: 22px;
+    color: rgb(4, 85, 165);
+}
+
+span {
+    font-size: 18px;
+    font-weight: 700;
+}

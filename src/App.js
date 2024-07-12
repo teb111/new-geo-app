@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Signup from "./signup/Signup";
 import Login from "./login/Login";
 import Register from "./register/Register";
-import forgotPassword from "./forgotPassword/forgotPassword";
+// import forgotPassword from "./forgotPassword/forgotPassword";
 import BusinessDashbaord from "./dashboard/dashboard";
 
 function App() {
